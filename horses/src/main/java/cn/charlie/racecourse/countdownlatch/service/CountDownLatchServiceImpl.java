@@ -36,14 +36,18 @@ public class CountDownLatchServiceImpl implements CountDownLatchService{
             ApplicationContextUtil.getBean(CountDownLatchService.class).echo(i, countDownLatch);
         }
         try {
-            boolean isCollected = countDownLatch.await(5, TimeUnit.MINUTES);
-            if (isCollected) {
-                System.out.println("collectBalls: collect end");
-            } else {
-                System.out.println("collectBalls: collect failed");
-            }
+            waitForCollection(countDownLatch);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void waitForCollection(CountDownLatch countDownLatch) throws InterruptedException {
+        boolean isCollected = countDownLatch.await(5, TimeUnit.MINUTES);
+        if (isCollected) {
+            System.out.println("collectBalls: collect end");
+        } else {
+            System.out.println("collectBalls: collect failed");
         }
     }
 }

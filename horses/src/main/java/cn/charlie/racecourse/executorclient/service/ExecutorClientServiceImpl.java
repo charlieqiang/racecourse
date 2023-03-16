@@ -17,6 +17,6 @@ public class ExecutorClientServiceImpl implements ExecutorClientService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("calculateDataSet: calculate job end");
+        System.out.println("Tread: " + Thread.currentThread().getName() + " calculateDataSet: calculate job end");
     }
 }

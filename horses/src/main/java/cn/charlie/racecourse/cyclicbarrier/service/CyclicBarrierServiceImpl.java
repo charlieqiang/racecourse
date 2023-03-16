@@ -17,14 +17,16 @@ public class CyclicBarrierServiceImpl implements CyclicBarrierService{
     @Async("fastHorsesExecutor")
     public void waitForDinner(Integer member, CyclicBarrier cyclicBarrier) {
         try {
-            System.out.println(member +" stand by");
-            cyclicBarrier.await();
-            System.out.println(member +" begin to have");
-        } catch (BrokenBarrierException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            standByForBegin(member, cyclicBarrier);
+        } catch (BrokenBarrierException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void standByForBegin(Integer member, CyclicBarrier cyclicBarrier) throws InterruptedException, BrokenBarrierException {
+        System.out.println(member +" stand by");
+        cyclicBarrier.await();
+        System.out.println(member +" begin to have");
     }
 
     @Override
