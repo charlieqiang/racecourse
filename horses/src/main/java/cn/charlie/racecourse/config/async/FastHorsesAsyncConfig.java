@@ -8,6 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
+ * @description CPU密集型核心数设置为CPU核心数
  * @author charlie
  * @date 3/14/2023 10:41 AM
  **/

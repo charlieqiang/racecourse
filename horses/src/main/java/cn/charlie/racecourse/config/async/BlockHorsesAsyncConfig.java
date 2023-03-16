@@ -8,6 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
+ * @description IO密集型核心数设置为99, 通过大量线程切换代替io等待时间, 空间换时间
  * @author charlie
  * @date 3/14/2023 10:41 AM
  **/
