@@ -23,7 +23,8 @@ public class CpuThreadTest {
     @Test
     @Order(2)
     public void eightThreadFullLoadTest() {
-        for (int j = 0; j < 7; j++) {
+        int theadQty = 7;
+        for (int j = 0; j < theadQty; j++) {
             new Thread(() -> {
                 while (true){
                 }
