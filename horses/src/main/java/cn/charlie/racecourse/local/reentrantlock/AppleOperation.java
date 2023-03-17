@@ -1,14 +1,10 @@
-package cn.charlie.racecourse.reentrantlock.base;
+package cn.charlie.racecourse.local.reentrantlock;
 
-import cn.charlie.racecourse.reentrantlock.entity.AppleBox;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import cn.charlie.racecourse.local.entity.AppleBox;
+import cn.charlie.racecourse.local.util.ThreadUtil;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -20,7 +16,7 @@ public class AppleOperation {
     private final Lock lock = new ReentrantLock();
 
     public void buildAppleBox() throws InterruptedException {
-        ExecutorService executor = createTreadPool();
+        ExecutorService executor = ThreadUtil.createTreadPool();
         AppleBox appleBox = createAppleBox();
 
         int appleQty = 8;
@@ -33,25 +29,11 @@ public class AppleOperation {
                 }
             });
         }
-        sleep();
+        ThreadUtil.sleep();
     }
 
-    private AppleBox createAppleBox() {
+    public AppleBox createAppleBox() {
         return new AppleBox(0);
-    }
-
-    private ExecutorService createTreadPool() {
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-                .setNameFormat("apple-box-thread-pool-%d").build();
-
-        return new ThreadPoolExecutor(8,
-                8,
-                0L,
-                TimeUnit.MICROSECONDS,
-                new LinkedBlockingQueue<>(8),
-                namedThreadFactory,
-                new ThreadPoolExecutor.CallerRunsPolicy()
-        );
     }
 
     private void addApple(AppleBox appleBox) throws InterruptedException {
@@ -71,11 +53,5 @@ public class AppleOperation {
         Integer qty = appleBox.getAppleQty();
         appleBox.setAppleQty(++qty);
         System.out.println(appleBox.getAppleQty());
-    }
-
-    private void sleep() throws InterruptedException {
-        while (true) {
-            Thread.sleep(100);
-        }
     }
 }

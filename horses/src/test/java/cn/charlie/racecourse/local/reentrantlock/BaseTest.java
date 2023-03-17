@@ -1,4 +1,4 @@
-package cn.charlie.racecourse.reentrantlock.base;
+package cn.charlie.racecourse.local.reentrantlock;
 
 import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer;

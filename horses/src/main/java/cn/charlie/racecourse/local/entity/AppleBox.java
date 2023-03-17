@@ -1,4 +1,4 @@
-package cn.charlie.racecourse.reentrantlock.entity;
+package cn.charlie.racecourse.local.entity;
 
 /**
  * @author charlie
