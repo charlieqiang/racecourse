@@ -21,10 +21,9 @@ public class BaseClient {
 
         final Map<String, AtomicInteger> countMap = new ConcurrentHashMap<>();
         final CountDownLatch latch = new CountDownLatch(treadQty);
-        Runnable task = () -> updateCountMap(countMap, latch);
 
         for (int i = 0; i < treadQty; i++) {
-            executor.submit(task);
+            executor.submit(() -> updateCountMap(countMap, latch));
         }
 
         try {

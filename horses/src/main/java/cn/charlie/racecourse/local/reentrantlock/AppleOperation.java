@@ -37,7 +37,7 @@ public class AppleOperation {
     }
 
     private void addApple(AppleBox appleBox) throws InterruptedException {
-        // 阻塞获取锁, 如果长时间获取不到锁, 则不执行
+        // 阻塞获取锁, 如果长时间获取不到锁, 则不执行, 可能出现锁失效导致没有调用
         if (lock.tryLock(8, TimeUnit.SECONDS)) {
             try {
                 doAddApple(appleBox);
