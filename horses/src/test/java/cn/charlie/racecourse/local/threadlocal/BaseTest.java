@@ -16,4 +16,10 @@ public class BaseTest {
     public void testBase() throws InterruptedException {
         new BaseClient().operateName();
     }
+
+    @Test
+    @Order(2)
+    public void testMemoryLeak() throws InterruptedException {
+        new MemoryLeakClient().useMemory();
+    }
 }
