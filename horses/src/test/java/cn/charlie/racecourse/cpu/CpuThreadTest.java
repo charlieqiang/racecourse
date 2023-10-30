@@ -26,8 +26,7 @@ public class CpuThreadTest {
         int theadQty = 7;
         for (int j = 0; j < theadQty; j++) {
             new Thread(() -> {
-                while (true){
-                }
+                while (true){}
             }).start();
         }
         while (true) {
